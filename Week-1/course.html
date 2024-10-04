@@ -101,7 +101,7 @@
             HP.innerText = `HP: ${response.data.stats[0].base_stat}`
             info.appendChild(document.createElement('h3')).innerText = `Name: ${response.data.name}`
             info.appendChild(document.createElement('h3')).innerText = `Type: ${response.data.types[0].type.name}`
-            img.appendChild(document.createElement('img')).src = response.data.sprites.front_shiny;
+            img.appendChild(document.createElement('img')).src = response.data.sprites.back_shiny;
             response.data.moves.slice(0, 4).forEach(move => {
                 let li = document.createElement('li');
                 li.innerText = move.move.name;
