@@ -3,115 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Yugioh card</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <style>
+
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
         #card {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            width: 300px;
-            border: 3px solid black;
-            border-radius: 10px;
-            margin: 0 auto;
-            position: relative;
-            background-color: rgb(110, 1, 1);
-            color: white;
+            width: 380px;
+            height: 620px;
+            border-radius: 15px;
+            border: 4px solid #00ddff;
+            box-shadow: 0px 0px 30px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease;
             overflow: hidden;
+            padding: 20px;
         }
 
-        #HP {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            margin: 0;
-            background-color: black;
-            color: white;
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 5px;
+        #card:hover {
+            transform: scale(1.05);
         }
 
-        #img {
+        #name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00c3ff;
+            text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .info-box {
+            font-size: 1.2rem;
+            color: #a6f1ff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.5), 0 0 25px rgba(0, 150, 255, 0.8);
+            margin: 10px 0;
+            width: 80%;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100px;
-            background-color: slategray;
-            border-radius: .5rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            animation: glow 2s infinite alternate;
         }
 
-        #moves {
-            list-style-type: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            height: 100px;
-            background-color: antiquewhite;
-            border-top: 2px solid black;
+        .info-box:hover {
+            box-shadow: 0px 0px 30px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 150, 255, 1);
+            transform: scale(1.05);
         }
 
-        #moves li {
-            text-align: center;
-            margin: 5px;
-            width: 40%;
-            background-color: rgb(2, 125, 141);
-            border: 1px solid black;
-            padding: 5px;
-            border-radius: 5px;
-            color: white;
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 25px rgba(0, 150, 255, 0.8);
+            }
+            to {
+                box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 35px rgba(0, 150, 255, 1);
+            }
         }
 
-        #info{
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
+        #img img {
             width: 100%;
-            height: 100px;
-            gap: 5px;
+            height: 250px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease;
         }
-        #info h3{
-            margin: 0;
+
+        #img img:hover {
+            transform: scale(1.1);
         }
+
+        #info {
+            font-size: 1rem;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            color: #ffffff;
+            box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        #atkdef {
+            font-size: 1.1rem;
+            color: #f1f1f1;
+            margin-top: 10px;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        }
+
     </style>
 </head>
+
 <body>
     <div id="card">
-        <h3 id="HP"></h3>
+        <div id="name"></div>
+        <div id="level" class="info-box"></div>
         <div id="img"></div>
+        <div id="type" class="info-box"></div>
+        <div id="attribute" class="info-box"></div>
+        <div id="atkdef" class="info-box"></div>
         <div id="info"></div>
-        <ul id="moves"></ul>
     </div>
+
     <script>
-        let card = document.getElementById('card')
-        let HP = document.getElementById('HP')
-        let img = document.getElementById('img')
-        let info = document.getElementById('info')
-        let moves = document.getElementById('moves')
-        let pokemon = 'pikachu';
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-        .then((response) => {
-            HP.innerText = `HP: ${response.data.stats[0].base_stat}`
-            info.appendChild(document.createElement('h3')).innerText = `Name: ${response.data.name}`
-            info.appendChild(document.createElement('h3')).innerText = `Type: ${response.data.types[0].type.name}`
-            img.appendChild(document.createElement('img')).src = response.data.sprites.front_shiny;
-            response.data.moves.slice(0, 4).forEach(move => {
-                let li = document.createElement('li');
-                li.innerText = move.move.name;
-                moves.appendChild(li)
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Blue-Eyes%20White%20Dragon')
+            .then(response => {
+                const card = response.data.data[0]; 
+
+                document.getElementById('name').innerText = card.name;
+                document.getElementById('level').innerText = `Level: ${card.level}`;
+                document.getElementById('type').innerText = `Type: ${card.type}`;
+                document.getElementById('attribute').innerText = `Attribute: ${card.attribute}`;
+                document.getElementById('atkdef').innerText = `ATK: ${card.atk} / DEF: ${card.def}`;
+
+                const imgDiv = document.getElementById('img');
+                const imgElement = document.createElement('img');
+                imgElement.src = card.card_images[0].image_url;
+                imgDiv.appendChild(imgElement);
+
+                document.getElementById('info').innerText = card.desc;
+            })
+            .catch(error => {
+                console.log("Error getting card data:", error);
             });
-        })
-        .catch((error) => {
-            console.log(errir)
-            alert('yo you got an error bruh')
-        })
     </script>
 </body>
 </html>
