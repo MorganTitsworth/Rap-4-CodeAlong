@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import axios from "axios";
 
 export default function Card(props) {
-  return (
-    <div>Card</div>
-  )
+  console.log(props)
+	return <div>Card</div>;
 }

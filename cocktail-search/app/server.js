@@ -8,6 +8,14 @@ const port = 3000;
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/drink/:name", async (req, res) => {
+	try {
+		const response = await axios.get(`www.thecocktaildb.com/api/json/v1/1/search.php?s=${req.params.name}`);
+		res.json(response.data);
+	} catch (err) {
+		console.error(err);
+	}
+});
 // Route to fetch brawler data
 // app.get("/characters", async (req, res) => {
 // 	const key = "4f79466478msh027dac3157f9db6p1ecba3jsn0532c6c38fc7";
