@@ -1,7 +1,7 @@
 import styles from './CardComponent.module.css';
 
-export default function CardComponent({pokemonCard}) {
-
+export default function CardComponent({ pokemonCard }) {
+    console.log('rendering card')
     return (
         <>
             {pokemonCard ?
@@ -14,8 +14,12 @@ export default function CardComponent({pokemonCard}) {
                         <h3>{pokemonCard.name}</h3>
                         <h3>{pokemonCard.types[0].type.name}</h3>
                     </div>
-                    <ul id="moves" className={styles.moves}></ul>
-                </div> 
+                    <ul id="moves" className={styles.moves}>
+                        {pokemonCard.moves.slice(0, 4).map((move, index) => {
+                            return <li key={index}>{move.move.name}</li>
+                        })}
+                    </ul>
+                </div>
                 : null}
         </>
     )
