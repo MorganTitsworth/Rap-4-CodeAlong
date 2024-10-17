@@ -112,7 +112,7 @@
       // Fetch data from the Yu-Gi-Oh! API
     axios
         .get(
-        `https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark%20Magician`
+        `https://db.ygoprodeck.com/api/v7/cardinfo.php`
         )
         .then((response) => {
           const cardData = response.data.data[0]; // Make sure to access data[0]

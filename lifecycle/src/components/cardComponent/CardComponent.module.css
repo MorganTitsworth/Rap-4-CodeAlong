@@ -1,28 +1,25 @@
-#card {
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .card {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        max-width: 500px; /* Set a maximum width */
+        max-width: 350px; /* Set a maximum width */
         border: 3px solid black;
         border-radius: 10px;
-        margin: 0 auto;
         background-color: rgb(110, 1, 1);
         padding-top: 20px;
         padding-inline: 0;
         color: white;
+        margin-top: 30px;
         /* overflow: hidden; */
     }
 
-    #img img {
-            width: 300px; /* Adjust the size of the image */
-            height: auto;  /* Keep the image aspect ratio */
-            border-radius: 10px; /* Optional rounded corners */
-            margin-top: 10px;
-        }
 
-        #description {
-            margin-top: 10px;
-        }
-
-    
