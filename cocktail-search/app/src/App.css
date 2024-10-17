@@ -1,1 +1,52 @@
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 6rem;
+}
 
+.search-container {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+.input {
+	color: #39393a;
+	border: 2px solid #8707ff;
+	border-radius: 10px;
+	padding: 1rem 1.5rem;
+	background: transparent;
+	max-width: 190px;
+	font-size: 32px;
+	box-shadow: 0px 0px 8px #8707ff;
+}
+
+.input:active {
+	box-shadow: 2px 2px 15px #8707ff inset;
+}
+
+.btn {
+	font-size: 1.2rem;
+	padding: 0.5rem 2rem;
+	border: none;
+	outline: none;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	text-transform: uppercase;
+	background-color: #39393a;
+	color: rgb(234, 234, 234);
+	font-weight: 700;
+	transition: 0.6s;
+	box-shadow: 0px 0px 16px #1f4c65;
+}
+
+.btn:active {
+	scale: 0.92;
+}
+
+.btn:hover {
+	background: rgb(2, 29, 78);
+	background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.8) 60%);
+	color: rgb(4, 4, 38);
+}
