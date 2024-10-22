@@ -1,2 +1,10 @@
 .App {
 }
+.section {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1em;
+}
