@@ -4,13 +4,14 @@ import styles from "./CardsStyles.module.css";
 
 export default function Cards(props) {
 	const drinks = props.info.drinks;
-	// console.log(drinks);
+	console.log("Rendering:", drinks);
 	const [drinkIndex, setDrinkIndex] = useState(0);
-	const [drink, setDrink] = useState(drinks[0]);
+	// const [drinks, setDrinks] = useState(props.info.drinks);
 
-	useEffect(() => {
-		setDrink(drinks[0]);
-	});
+	// useEffect(() => {
+	// 	console.log("USE EFFECT");
+	// 	setDrink(drinks[drinkIndex]);
+	// }, [drinks]);
 
 	const handleNextClick = () => {
 		if (drinkIndex === drinks.length - 1) {
@@ -19,7 +20,7 @@ export default function Cards(props) {
 			setDrinkIndex(drinkIndex + 1);
 		}
 
-		setDrink(drinks[drinkIndex]);
+		// setDrink(drinks[drinkIndex]);
 	};
 	const handleBackClick = () => {
 		if (drinkIndex === 0) {
@@ -28,12 +29,12 @@ export default function Cards(props) {
 			setDrinkIndex(drinkIndex - 1);
 		}
 
-		setDrink(drinks[drinkIndex]);
+		// setDrink(drinks[drinkIndex]);
 	};
 
 	return (
 		<div className={styles.container}>
-			<Card drink={drink} />
+			<Card drink={drinks[drinkIndex]} />
 
 			<div className={styles.buttonContainer}>
 				<button className={styles.button3d} onClick={handleBackClick}>
