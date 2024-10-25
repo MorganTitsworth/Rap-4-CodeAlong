@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CardStyles.module.css";
 
 export default function Card(props) {
-	console.log("Rendering: Card.js");
+	console.log("Rendering: props.drink");
 	// console.log(props);
 
 	const drink = props.drink;
