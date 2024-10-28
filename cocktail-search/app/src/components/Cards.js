@@ -42,11 +42,11 @@ export default function Cards(props) {
 		};
 	});
 	return (
-		<div>
+		<div className={styles.cardsDiv}>
 			{drinks.map((data) => {
 				return <Card key={data.idDrink} drink={data} />;
 			})}
-			<div id="seen">SEE ME</div>
+			<hr id="seen"></hr>
 		</div>
 	);
 	// const [drinkIndex, setDrinkIndex] = useState(0);
