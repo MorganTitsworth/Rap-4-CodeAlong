@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import styles from './searchCardRandom.module.scss';
-import RecipeCard from '../RecipeCard/RecipeCard-edited';
+import RecipeCard from '../RecipeCard/RecipeCard';
 
 function SearchCardRandom() {
   const [recipeList, setRecipeList] = useState([]);
@@ -18,7 +18,7 @@ function SearchCardRandom() {
           console.log(entry);
           if (entry.isIntersecting) {
             item.current += 1;
-            setRecipeList(recipeList.slice(0, item.current));
+            setRecipeItem(recipeList.slice(0, item.current));
             // alert('Intersecting VP');
           }
         });

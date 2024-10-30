@@ -9,13 +9,14 @@ const Summary = ({ props }) => {
 function RecipeCard({ props }) {
   return (
     <div className={styles.grid}>
+      {console.log(props)}
       <div className={styles.container}>
         <div className={styles.containerImage}>
           {props ? (
             <img
               // onClick={getRecipe}
               className={styles.image}
-              src={props.recipes.image}
+              src={props.recipes[0].image}
               alt='Sample Dish'
             ></img>
           ) : null}
