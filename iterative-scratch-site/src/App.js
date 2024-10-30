@@ -3,7 +3,7 @@
 // import RecipeCard from './components/RecipeCard/RecipeCard';
 import styles from './App.module.css';
 import SearchCardRandom from './components/SearchCardRandom/SearchCardRandom';
-
+import Header from './components/Header/Header';
 function App() {
   // const [card, setCard] = useState(null);
 
@@ -19,16 +19,10 @@ function App() {
   // };
 
   return (
-    <div className={styles.section}>
+    <>
+      <Header />
       <SearchCardRandom />
-      <SearchCardRandom />
-      <SearchCardRandom />
-      <SearchCardRandom />
-      <SearchCardRandom />
-      <SearchCardRandom />
-      <SearchCardRandom />
-      <SearchCardRandom />
-    </div>
+    </>
   );
 }
 export default App;

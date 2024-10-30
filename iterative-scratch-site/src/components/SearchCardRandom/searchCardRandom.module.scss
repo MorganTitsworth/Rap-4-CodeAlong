@@ -1,0 +1,18 @@
+.container {
+  width: fit-content;
+  /* border: 2px solid rgb(255, 255, 255); */
+  position: relative;
+  //   -webkit-box-reflect: below 5px linear-gradient(transparent, #0005);
+  //   box-shadow: 0 0 5px #03e9f4, 0 0 15px #03e9f4, 0 0 25px #03e9f4,
+  //     0 0 100px #03e9f4;
+}
+.containerButton {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(244 244 245);
+}
+.getButton {
+  border-radius: 0.375rem;
+  background-color: white;
+  border: 1px solid black;
+}

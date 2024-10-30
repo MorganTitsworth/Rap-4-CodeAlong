@@ -1,0 +1,23 @@
+.backgroundImg {
+  //'h-32 w-full object-cover lg:h-48'
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+.headerContainer {
+  border-radius: 0.25rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-color: black;
+  border-width: 1rem;
+  position: relative;
+}
+.overlayText {
+  position: absolute;
+  top: 50%; /* adjust to your desired position */
+  left: 50%; /* adjust to your desired position */
+  transform: translate(-50%, -50%); /* center horizontally and vertically */
+  font-size: 6rem; /* adjust font size and style as needed */
+  color: #fff; /* adjust text color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
