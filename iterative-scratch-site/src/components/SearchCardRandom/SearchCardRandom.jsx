@@ -5,34 +5,10 @@ import RecipeCard from '../RecipeCard/RecipeCard';
 
 function SearchCardRandom() {
   const [recipeList, setRecipeList] = useState([]);
-  const [recipeItem, setRecipeItem] = useState();
   const [load, setLoad] = useState(true);
-  const item = useRef(0);
-  const observer = useRef(null);
 
   useEffect(() => {
     getRecipes();
-    observer.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.log(entry);
-          if (entry.isIntersecting) {
-            item.current += 1;
-            setRecipeItem(recipeList.slice(0, item.current));
-            // alert('Intersecting VP');
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-    observer.current.observe(document.getElementById('seen'));
-    return () => {
-      observer.current.disconnect();
-    };
   }, []);
 
   const getRecipes = async () => {
@@ -58,11 +34,6 @@ function SearchCardRandom() {
         <div>
           {load ? <p>loading...</p> : <RecipeCard props={recipeList} />}
         </div>
-        {/* {recipeItem.map((data) => {
-          return (
-            <div>{load ? <p>loading...</p> : <RecipeCard props={data} />}</div>
-          );
-        })} */}
         <div id='seen'> SEE MEE</div>
         <div className={styles.containerButton}>
           <button className={styles.getButton} onClick={getRecipes}>
