@@ -1,10 +1,7 @@
 .container {
   width: fit-content;
-  /* border: 2px solid rgb(255, 255, 255); */
   position: relative;
-  //   -webkit-box-reflect: below 5px linear-gradient(transparent, #0005);
-  //   box-shadow: 0 0 5px #03e9f4, 0 0 15px #03e9f4, 0 0 25px #03e9f4,
-  //     0 0 100px #03e9f4;
+  min-height: 100vh;
 }
 .containerButton {
   display: flex;

@@ -29,19 +29,20 @@ function SearchCardRandom() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.containerContent}>
-        <div>
-          {load ? <p>loading...</p> : <RecipeCard props={recipeList} />}
-        </div>
-        <div id='seen'> SEE MEE</div>
-        <div className={styles.containerButton}>
-          <button className={styles.getButton} onClick={getRecipes}>
-            Get Random Recipe
-          </button>
+    <>
+      <div className={styles.container}>
+        <div className={styles.containerContent}>
+          <div>
+            {load ? <p>loading...</p> : <RecipeCard props={recipeList} />}
+          </div>
+          <div className={styles.containerButton}>
+            <button className={styles.getButton} onClick={getRecipes}>
+              Get Random Recipe
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default SearchCardRandom;

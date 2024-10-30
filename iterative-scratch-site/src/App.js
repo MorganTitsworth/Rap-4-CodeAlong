@@ -22,6 +22,9 @@ function App() {
     <>
       <Header />
       <SearchCardRandom />
+      <div id='seen'>
+        <br />
+      </div>
     </>
   );
 }

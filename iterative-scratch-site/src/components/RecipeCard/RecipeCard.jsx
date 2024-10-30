@@ -7,29 +7,25 @@ const Summary = ({ props }) => {
   return <p dangerouslySetInnerHTML={{ __html: markup }} />;
 };
 function RecipeCard({ props }) {
-  console.log(props);
-  const [recipeItems, setRecipeItems] = useState(props.recipes);
+  const [recipeItems, setRecipeItems] = useState([props.recipes[0]]);
   const observer = useRef(null);
   // const [load, setLoad] = useState(true);
-  const count = useRef(0);
+  const count = useRef(1);
 
   useEffect(() => {
-    // console.log(props);
     observer.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry);
           if (entry.isIntersecting) {
             count.current += 1;
             setRecipeItems(props.recipes.slice(0, count.current));
-            // alert('Intersecting VP');
           }
         });
       },
       {
         root: null,
         rootMargin: '0px',
-        threshold: 1,
+        threshold: 0.1,
       }
     );
     observer.current.observe(document.getElementById('seen'));
