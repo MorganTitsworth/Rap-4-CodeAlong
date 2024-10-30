@@ -1,13 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Card from "./Card";
 import styles from "./CardsStyles.module.css";
+import DrinksContext from "../DrinksContext";
 
-export default function Cards(props) {
-	const drinkData = props.info.drinks;
-	console.log("Rendering:", drinkData);
+export default function Cards() {
+	// const drinkData = props.info.drinks;
+
+	console.log("Rendering: Cards.js");
+
+	const { drinkData, setDrinkData } = useContext(DrinksContext);
 
 	const [drinks, setDrinks] = useState([drinkData[0]]);
 
+	// console.log(drinkData);
+	// console.log(drinks);
 	const drinkIndex = useRef(0);
 	const observer = useRef(null);
 
@@ -21,7 +27,7 @@ export default function Cards(props) {
 		observer.current = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					console.log(entry);
+					// console.log(entry);
 					if (entry.isIntersecting) {
 						drinkIndex.current += 1;
 						setDrinks(drinkData.slice(0, drinkIndex.current));
