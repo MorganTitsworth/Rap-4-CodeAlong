@@ -3,7 +3,7 @@ import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 export default function LayoutEffectComponent() {
     const elementRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (elementRef.current) {
             const { width, height } = elementRef.current.getBoundingClientRect();
             setDimensions({ width, height });
