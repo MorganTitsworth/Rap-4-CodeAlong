@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from '@reduxjs/toolkit';
-import pokemonSlice from './features/pokemon';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit";
+import postReducer from "./features/posts";
 
 const rootReducer = combineReducers({
-    pokemon: pokemonSlice,
+	posts: postReducer,
 });
 
 export const store = configureStore({
-    reducer: rootReducer,
+	reducer: rootReducer,
 });
