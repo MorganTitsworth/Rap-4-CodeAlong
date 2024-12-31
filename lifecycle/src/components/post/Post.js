@@ -1,20 +1,13 @@
-import db from "../../api/firebase-config";
+import { db } from "../../api/firebase-config";
 import { useState } from "react";
 import { collection, doc, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { updatePost } from "../../features/posts";
 
 export default function Post({ postContent }) {
 	const [changes, setChanges] = useState({ newPostContent: postContent.content, newLikes: postContent.like });
+	const dispatch = useDispatch();
 	const docRef = doc(db, "posts", postContent.id);
-
-	async function updateDocFunction(content) {
-		console.log("Updating Posts");
-		try {
-			await updateDoc(docRef, { content: content });
-			alert("CHANGES MADE");
-		} catch (error) {
-			console.log(error);
-		}
-	}
 
 	async function deleteDocFunction() {
 		try {
@@ -27,7 +20,7 @@ export default function Post({ postContent }) {
 	return (
 		<div>
 			{postContent.content}
-			<hr />
+			<br />
 			<input
 				type="text"
 				placeholder="Content"
@@ -40,7 +33,7 @@ export default function Post({ postContent }) {
 			<button
 				onClick={() => {
 					console.log("Edit post button clicked ");
-					updateDocFunction(changes.newPostContent);
+					dispatch(updatePost({ changes: changes.newPostContent, id: postContent.id }));
 				}}
 			>
 				Update Post!
@@ -54,6 +47,7 @@ export default function Post({ postContent }) {
 			>
 				X
 			</button>
+			<hr />
 		</div>
 	);
 }
