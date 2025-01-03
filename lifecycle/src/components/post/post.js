@@ -2,21 +2,12 @@ import { db } from "../../api/firebase-config";
 import { useState } from "react";
 import { collection, doc, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
-import { updateDocument } from "../../features/posts";
+import { updateDocument, deleteDocument } from "../../features/posts";
 
 export default function Post({ postContent }) {
 	const [changes, setChanges] = useState({ newPostContent: postContent.content, newLikes: postContent.like });
 	const dispatch = useDispatch();
-	const docRef = doc(db, "posts", postContent.id);
-
-	async function deleteDocFunction() {
-		try {
-			await deleteDoc(docRef);
-			alert("DELETION HAPPENED");
-		} catch (error) {
-			console.log(error);
-		}
-	}
+	// const docRef = doc(db, "posts", postContent.id);
 	return (
 		<div>
 			{postContent.content}
@@ -42,7 +33,7 @@ export default function Post({ postContent }) {
 			<button
 				onClick={() => {
 					console.log("Delete button clicked ");
-					deleteDocFunction();
+					dispatch(deleteDocument(postContent.id));
 				}}
 			>
 				X
