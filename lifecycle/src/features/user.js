@@ -31,7 +31,6 @@ export const signOut = createAsyncThunk("user/signOut", async () => {
     } catch (error) {
         console.log(error);
         return error.message;
-        //return null anyways? 
     }
 });
 

@@ -18,7 +18,6 @@ export const getPostsData = createAsyncThunk("posts/getPostsData", async () => {
 
 export const addPost = createAsyncThunk("posts/addPost", async ({ content, uid, like }) => {
     try {
-        console.log('uid:', uid)
         let newContent = {
             uid: uid,
             content: content,
@@ -38,6 +37,15 @@ export const updateDocument = createAsyncThunk("posts/updateDocument", async ({ 
         await updateDoc(docRef, { content: changes })
         const docQuery = await getDoc(docRef);
         return { id: docQuery.id, ...docQuery.data() };
+    } catch (error) {
+        console.error(error);
+    }
+})
+
+export const deleteDocument = createAsyncThunk("posts/deleteDocument", async (id) => {
+    try {
+        const docRef = doc(db, "posts", id)
+        await deleteDoc(docRef);
     } catch (error) {
         console.error(error);
     }
@@ -71,7 +79,7 @@ const postSlice = createSlice({
             })
             .addCase(addPost.fulfilled, (state, action) => {
                 state.loading = false;
-                state.posts.push({...action.payload});
+                state.posts.push({ ...action.payload });
             })
             .addCase(addPost.rejected, (state, action) => {
                 state.loading = false;
@@ -88,6 +96,18 @@ const postSlice = createSlice({
                 }
             })
             .addCase(updateDocument.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(deleteDocument.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(deleteDocument.fulfilled, (state, action) => {
+                const id = action.meta.arg;
+                state.loading = false;
+                state.posts = state.posts.filter((post) => post.id !== id)
+            })
+            .addCase(deleteDocument.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
