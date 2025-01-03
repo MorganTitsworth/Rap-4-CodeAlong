@@ -2,7 +2,7 @@ import { db } from "../../api/firebase-config";
 import { useState } from "react";
 import { collection, doc, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
-import { updatePost } from "../../features/posts";
+import { updateDocument } from "../../features/posts";
 
 export default function Post({ postContent }) {
 	const [changes, setChanges] = useState({ newPostContent: postContent.content, newLikes: postContent.like });
@@ -33,7 +33,7 @@ export default function Post({ postContent }) {
 			<button
 				onClick={() => {
 					console.log("Edit post button clicked ");
-					dispatch(updatePost({ changes: changes.newPostContent, id: postContent.id }));
+					dispatch(updateDocument({ changes: changes.newPostContent, id: postContent.id }));
 				}}
 			>
 				Update Post!
